@@ -25,6 +25,7 @@ Content-Typeapplication/json
     localhost:3000/dogs?sort=-age (desc)
 ###### page
     default 0
+    localhost:3000/dogs/?page=2
 
 ###### limit
     default 10
