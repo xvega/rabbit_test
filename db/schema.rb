@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_17_132232) do
+ActiveRecord::Schema.define(version: 2020_04_19_185845) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,7 +26,8 @@ ActiveRecord::Schema.define(version: 2020_04_17_132232) do
     t.string "name"
     t.integer "age"
     t.integer "weight"
-    t.datetime "reservation_date"
+    t.datetime "reservation_day_limit"
+    t.integer "reserved"
     t.bigint "breed_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -34,5 +35,15 @@ ActiveRecord::Schema.define(version: 2020_04_17_132232) do
     t.index ["name"], name: "index_dogs_on_name"
   end
 
+  create_table "reservations", force: :cascade do |t|
+    t.string "rescuer_name"
+    t.integer "day_limit"
+    t.bigint "dog_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dog_id"], name: "index_reservations_on_dog_id"
+  end
+
   add_foreign_key "dogs", "breeds"
+  add_foreign_key "reservations", "dogs"
 end

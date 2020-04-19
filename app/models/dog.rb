@@ -1,5 +1,6 @@
 class Dog < ApplicationRecord
   belongs_to :breed
+  has_one :reservation
 
   validates :name, :age, presence: true
 
