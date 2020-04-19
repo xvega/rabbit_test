@@ -11,7 +11,7 @@ RSpec.describe 'Dogs API', type: :request do
 
     it 'returns dogs' do
       expect(json).not_to be_empty
-      expect(json.size).to eq(1)
+      expect(json['data'].size).to eq(1)
     end
 
     it 'returns status code 200' do
@@ -26,7 +26,7 @@ RSpec.describe 'Dogs API', type: :request do
     context 'when the record exists' do
       it 'returns the dog' do
         expect(json).not_to be_empty
-        expect(json['id']).to eq(dog_id)
+        expect(json['data']['id'].to_i).to eq(dog_id)
       end
 
       it 'returns status code 200' do
@@ -59,7 +59,7 @@ RSpec.describe 'Dogs API', type: :request do
       before { post '/dogs', params: { dog: valid_attributes } }
 
       it 'creates a dog' do
-        expect(json['name']).to eq('Ringo')
+        expect(json['data']['attributes']['name']).to eq('Ringo')
       end
 
       it 'returns status code 201' do
