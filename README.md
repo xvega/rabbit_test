@@ -1,24 +1,68 @@
-# README
+# Dog Running S.A API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This API is using Rails and postgresql 
 
-Things you may want to cover:
+# Dependencies?
 
-* Ruby version
+- [DOCKER](https://docs.docker.com/v17.12/docker-for-mac/install/)
 
-* System dependencies
+# How to run it?
 
-* Configuration
+```sh
+docker-compose build
+docker-compose up
+```
 
-* Database creation
+# DOGS
+##### Headers
+Content-Typeapplication/json
 
-* Database initialization
+##### Params
 
-* How to run the test suite
+###### sort:
+    name ASC
+    localhost:3000/dogs?sort=+age (asc)
+    localhost:3000/dogs?sort=-age (desc)
+###### page
+    default 0
 
-* Services (job queues, cache servers, search engines, etc.)
+###### limit
+    default 10
+    localhost:3000/dogs?limit=3
+    
+#### GET /dogs/:id
+#### POST /dogs
+#### PUT /dogs/:id
+#### DELETE /dogs/:id
 
-* Deployment instructions
+##### Body form data
 
-* ...
+```sh
+{
+ "dog":
+ {
+ "name":"",
+ "age":"",
+ "weight":"",
+ "breed_id":""
+ }
+}
+```
+
+# BREEDS
+
+##### Headers
+Content-Typeapplication/json
+##### Params
+N/A
+##### Body form data
+N/A
+
+#### GET /dogs/
+
+# RESERVATION
+
+##### Headers
+Content-Typeapplication/json
+
+##### Params
