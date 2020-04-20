@@ -1,17 +1,25 @@
 require 'rails_helper'
 
-RSpec.describe 'Reservations API', type: :request do
+RSpec.describe ReservationsController, type: :controller do
+
+  before(:each) do
+    @access_token = FactoryBot.create(:api_key).access_token
+    http_login(@access_token)
+  end
+
   let(:dog) { FactoryBot.create(:dog) }
   let(:dog_number_two) { FactoryBot.create(:dog) }
   let!(:reservation) { FactoryBot.create(:reservation, dog_id: dog.id) }
 
   # Test suite for GET /breeds (index)
   describe 'GET /reservations' do
-    before { get '/reservations' }
+    before do
+      get :index, format: 'json'
+    end
 
     it 'returns reservations' do
-      expect(json).not_to be_empty
-      expect(json.size).to eq(1)
+      expect(json['data'].first['attributes']).not_to be_empty
+      expect(json['data'].size).to eq(1)
     end
 
     it 'returns status code 200' do
@@ -28,7 +36,9 @@ RSpec.describe 'Reservations API', type: :request do
     end
 
     context 'when the request is valid' do
-      before { post '/reservations', params: { reservation: valid_attributes } }
+      before do
+        post :create, params: { reservation: valid_attributes }
+      end
 
       it 'creates a reservation' do
         expect(json['data']['attributes']['rescuer-name']).to eq('Yoko Ono')
@@ -46,7 +56,7 @@ RSpec.describe 'Reservations API', type: :request do
       end
 
       before do
-        post '/reservations', params: { reservation: invalid_attributes }
+        post :create, params: { reservation: invalid_attributes }
       end
 
       it 'returns status code 422' do

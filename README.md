@@ -13,20 +13,40 @@ docker-compose build
 docker-compose up
 ```
 
+# Authentication
+
+The app uses an access token to authenticate API calls, in order to generate the token do the following
+1 - open the rails console
+```sh
+docker-compose run app rails console 
+```
+2- Create an API key
+```sh
+ApiKey.create!
+```
+3- Copy the access_token in previous step and add it in the authorization tab in Postman, on the category bearer token
+
 # DOGS
 ##### Headers
 Content-Typeapplication/json
 
-##### Params
-
+##### Params: One of the following can be used this way:
+    
+    name
+    age
+    weight
+    
+    localhost:3000/dogs?name=asteroide
+    localhost:3000/dogs?age=20
+    localhost:3000/dogs?weight=10
+    
 ###### sort:
     name ASC
     localhost:3000/dogs?sort=+age (asc)
     localhost:3000/dogs?sort=-age (desc)
 ###### page
     default 0
-    localhost:3000/dogs/?page=2
-
+    localhost:3000/dogs?page=0
 ###### limit
     default 10
     localhost:3000/dogs?limit=3
@@ -59,7 +79,7 @@ N/A
 ##### Body form data
 N/A
 
-#### GET /dogs/
+#### GET /breeds/
 
 # RESERVATION
 
@@ -67,3 +87,24 @@ N/A
 Content-Typeapplication/json
 
 ##### Params
+
+N/A
+
+#### GET /reservations/:id
+#### POST /reservations
+
+
+##### Body form data
+```sh
+    {
+     "reservation":
+     {
+     "rescuer_name":"2123",
+     "dog_id":"1"
+     }
+    }
+```
+
+
+
+

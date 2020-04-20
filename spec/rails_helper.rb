@@ -19,7 +19,8 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
   config.include FactoryBot::Syntax::Methods
-  config.include RequestSpecHelper, type: :request
+  config.include RequestSpecHelper
+  config.include AuthHelper, type: :controller
 end
 
 FactoryBot.definition_file_paths << File.join(File.dirname(__FILE__), 'factories')
