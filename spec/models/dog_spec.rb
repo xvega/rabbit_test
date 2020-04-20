@@ -27,4 +27,47 @@ RSpec.describe Dog, type: :model do
       end.to change { Dog.count }.by(0)
     end
   end
+
+  describe '#filter_by_params' do
+    before(:each) do
+      FactoryBot.create(:dog, age: 10, name: 'ringo', weight: 15)
+      FactoryBot.create(:dog, age: 10, name: 'lennon')
+      FactoryBot.create(:dog, age: 10, name: 'paul')
+      FactoryBot.create(:dog, age: 10, name: 'ringo', weight: 20)
+    end
+
+    context 'when there are records in the DB' do
+      it 'filters by name' do
+        params = { name: 'ringo', age: 12 }
+        expect(Dog.filter_by_params(params).count).to eq(2)
+      end
+
+      it 'filters by age' do
+        params = { age: 10 }
+        expect(Dog.filter_by_params(params).count).to eq(4)
+      end
+
+      it 'filters by weight' do
+        params = { weight: 15 }
+        expect(Dog.filter_by_params(params).count).to eq(1)
+      end
+    end
+
+    context 'when there are no records in the DB' do
+      it 'filters by name' do
+        params = { name: 'none' }
+        expect(Dog.filter_by_params(params).count).to eq(0)
+      end
+
+      it 'filters by age' do
+        params = { age: 70 }
+        expect(Dog.filter_by_params(params).count).to eq(0)
+      end
+
+      it 'filters by weight' do
+        params = { weight: 10 }
+        expect(Dog.filter_by_params(params).count).to eq(0)
+      end
+    end
+  end
 end
