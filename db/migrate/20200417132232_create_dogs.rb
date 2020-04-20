@@ -5,7 +5,6 @@ class CreateDogs < ActiveRecord::Migration[5.2]
       t.integer :age
       t.integer :weight
       t.datetime :reservation_day_limit
-      t.integer :reserved
       t.references :breed, foreign_key: true, index: true
 
       t.timestamps

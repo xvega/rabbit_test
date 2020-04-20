@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 2020_04_19_185845) do
     t.integer "age"
     t.integer "weight"
     t.datetime "reservation_day_limit"
-    t.integer "reserved"
     t.bigint "breed_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
