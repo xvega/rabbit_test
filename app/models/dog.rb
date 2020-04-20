@@ -7,7 +7,7 @@ class Dog < ApplicationRecord
   scope :total_by_breed, -> { joins(:breed).group('breeds.name').count }
   scope :age_avg, -> { average(:age) }
   scope :weight_avg, -> { average(:weight) }
-  scope :by_name, ->(name) { where('name LIKE ?', "%#{name}%") }
+  scope :by_name, ->(name) { where('name LIKE ?', "%#{name.downcase}%") }
   scope :by_age, ->(age) { where(age: age) }
   scope :by_weight, ->(weight) { where(weight: weight) }
 

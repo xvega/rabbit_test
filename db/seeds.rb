@@ -2,6 +2,6 @@ breeds = ["Abruzzenhund", "Affenpinscher", "Afghan Hound", "Africanis", "Aidi", 
 
 if Breed.all.empty?
   breeds.each do |name|
-    Breed.create(name: name)
+    Breed.create(name: name.downcase)
   end
 end
