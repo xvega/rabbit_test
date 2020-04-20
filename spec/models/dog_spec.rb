@@ -5,7 +5,7 @@ RSpec.describe Dog, type: :model do
 
     let(:dog) { FactoryBot.create(:dog) }
 
-    it 'creates a new product' do
+    it 'creates a new dog' do
       expect { dog }.to change { Dog.count }.by(1)
     end
   end
