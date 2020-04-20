@@ -37,7 +37,8 @@ class DogsController < ApplicationController
   private
 
   def filter_dogs
-    Dog.filter_by_params(params).order(ordering_params(params))
+    Dog.filter_by_params(params)
+       .order(ordering_params(params))
        .page(params[:page] ? params[:page] : 1)
        .per(params[:limit] ? params[:limit] : 10)
   end

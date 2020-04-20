@@ -24,5 +24,6 @@ class Dog < ApplicationRecord
     return dogs.by_name(params[:name]) if params[:name].present? && params[:name] != ''
     return dogs.by_age(params[:age]) if params[:age].present? && params[:age] != ''
     return dogs.by_weight(params[:weight]) if params[:weight].present? && params[:weight] != ''
+    dogs
   end
 end
