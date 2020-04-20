@@ -41,8 +41,9 @@ Content-Typeapplication/json
     localhost:3000/dogs?weight=10
     
 ###### sort:
-    name ASC
-    localhost:3000/dogs?sort=+age (asc)
+    DEFAULT SORT name DESC 
+    
+    localhost:3000/dogs?sort=age (asc) NOTE: no need to add extra symbols to this
     localhost:3000/dogs?sort=-age (desc)
 ###### page
     default 0
