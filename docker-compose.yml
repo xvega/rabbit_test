@@ -21,7 +21,13 @@ services:
     image: postgres:10.4-alpine
     stdin_open: true
     tty: true
+    volumes:
+      - db:/var/lib/postgresql/data
+    env_file:
+      - .env
     ports:
-      - "6379:6379"
+      - "5432:5432"
+    restart: "no"
 volumes:
   redis:
+  db:
